@@ -1,0 +1,5377 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>STUDY⁺</title>
+
+<style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    Arial,
+    sans-serif;
+
+  background: #f6f7fb;
+  color: #333;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #8e7bea
+    );
+
+  color: white;
+
+  padding:
+    30px 20px 25px;
+
+  text-align: center;
+
+  border-radius:
+    0 0 30px 30px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(102,126,234,.20);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin: 7px 0 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.start-date {
+  margin-top: 12px;
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.18);
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+  max-width: 920px;
+  margin: auto;
+  padding: 16px;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav-buttons {
+  display: grid;
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.nav-button {
+  border: none;
+  padding: 12px 4px;
+  border-radius: 15px;
+
+  background: white;
+  color: #6471d7;
+
+  font-weight: bold;
+  font-size: 12px;
+
+  box-shadow:
+    0 4px 15px
+    rgba(70,80,130,.08);
+
+  cursor: pointer;
+}
+
+.nav-button.active {
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #8e7bea
+    );
+
+  color: white;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card {
+  background: white;
+  border-radius: 22px;
+  padding: 20px;
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 5px 22px
+    rgba(70,80,130,.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 19px;
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+.countdown-card {
+  background:
+    linear-gradient(
+      135deg,
+      #fff8e8,
+      #fff2d2
+    );
+
+  color: #8d671e;
+  text-align: center;
+}
+
+.countdown-label {
+  font-size: 14px;
+}
+
+.countdown-number {
+  font-size: 42px;
+  font-weight: 900;
+  margin: 5px 0;
+}
+
+.countdown-date {
+  font-size: 13px;
+}
+
+.countdown-setting {
+  margin-top: 14px;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 12px;
+}
+
+.summary-box {
+  text-align: center;
+  padding: 17px 10px;
+  border-radius: 17px;
+}
+
+.study-box {
+  background: #eef0ff;
+  color: #5365d8;
+}
+
+.youtube-box {
+  background: #fff0f2;
+  color: #e05261;
+}
+
+.goal-box {
+  background: #edf9f3;
+  color: #3d966b;
+}
+
+.summary-title {
+  font-size: 13px;
+}
+
+.summary-number {
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+.total-study {
+  text-align: center;
+  padding: 22px 10px;
+}
+
+.total-study .small {
+  color: #888;
+  font-size: 13px;
+}
+
+.total-study .big {
+  color: #5968d8;
+  font-size: 32px;
+  font-weight: 900;
+  margin-top: 4px;
+}
+
+
+/* =====================================================
+   COMPARISON
+===================================================== */
+
+.comparison {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.positive {
+  background: #eaf8f0;
+  color: #309267;
+}
+
+.negative {
+  background: #fff0f1;
+  color: #db5360;
+}
+
+.neutral {
+  background: #f2f2f5;
+  color: #777;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.input-group {
+  margin-bottom: 17px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.time-inputs {
+  display: grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap: 10px;
+}
+
+.time-box {
+  position: relative;
+}
+
+.time-box input {
+  padding-right: 45px;
+}
+
+.time-unit {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform:
+    translateY(-50%);
+  color: #888;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+
+  border:
+    2px solid #e5e7f0;
+
+  border-radius: 13px;
+
+  font-size: 16px;
+
+  outline: none;
+
+  background: white;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #667eea;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+  border: none;
+
+  background: #667eea;
+  color: white;
+
+  padding: 12px 18px;
+
+  border-radius: 13px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+.save-button {
+  width: 100%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #8e7bea
+    );
+
+  font-size: 17px;
+
+  padding: 14px;
+}
+
+.secondary-button {
+  background: #eeeef5;
+  color: #555;
+}
+
+.message {
+  text-align: center;
+  color: #4b9b70;
+  font-weight: bold;
+  margin-top: 10px;
+  min-height: 20px;
+}
+
+
+/* =====================================================
+   SUBJECT
+===================================================== */
+
+.subject-toggle {
+  width: 100%;
+  background: #f2f3ff;
+  color: #5968d8;
+  margin-bottom: 13px;
+}
+
+.subject-area {
+  display: none;
+}
+
+.subject-area.open {
+  display: block;
+}
+
+.subject-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+}
+
+.subject-item {
+  background: #f7f8fc;
+  padding: 12px;
+  border-radius: 13px;
+}
+
+.subject-item label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.subject-total {
+  margin-top: 12px;
+  padding: 12px;
+
+  border-radius: 13px;
+
+  background: #eef0ff;
+
+  text-align: center;
+
+  color: #5968d8;
+
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   REPORT LIST
+===================================================== */
+
+.week-card,
+.month-card {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  margin-bottom: 12px;
+
+  border:
+    2px solid transparent;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.week-card:hover,
+.month-card:hover {
+  border-color: #667eea;
+  transform:
+    translateY(-2px);
+}
+
+.week-card.current,
+.month-card.current {
+  border-color: #667eea;
+  background: #f8f8ff;
+}
+
+.week-card-title,
+.month-card-title {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.week-card-sub,
+.month-card-sub {
+  margin-top: 5px;
+  color: #888;
+  font-size: 13px;
+}
+
+.week-card-time,
+.month-card-time {
+  margin-top: 12px;
+  font-size: 22px;
+  color: #5365d8;
+  font-weight: bold;
+}
+
+.week-arrow,
+.month-arrow {
+  float: right;
+  font-size: 22px;
+  color: #aaa;
+}
+
+.month-mini-info {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.mini-tag {
+  padding: 6px 9px;
+  background: #f3f4fa;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+
+/* =====================================================
+   CHART
+===================================================== */
+
+.day-row {
+  display: grid;
+
+  grid-template-columns:
+    50px 1fr 75px;
+
+  gap: 10px;
+
+  align-items: center;
+
+  margin-bottom: 14px;
+
+  cursor: pointer;
+}
+
+.day-name {
+  font-weight: bold;
+  color: #555;
+}
+
+.bar-background,
+.month-bar-background {
+  height: 26px;
+  background: #eeeef5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar,
+.month-bar {
+  height: 100%;
+  background:
+    linear-gradient(
+      90deg,
+      #667eea,
+      #9278e9
+    );
+
+  border-radius: 20px;
+}
+
+.day-time {
+  text-align: right;
+  font-size: 13px;
+  font-weight: bold;
+  color: #5968d8;
+}
+
+.month-day-row {
+  display: grid;
+
+  grid-template-columns:
+    48px 1fr 70px;
+
+  gap: 8px;
+
+  align-items: center;
+
+  margin-bottom: 11px;
+}
+
+.month-day-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: bold;
+}
+
+.month-bar-background {
+  height: 22px;
+}
+
+.month-day-time {
+  text-align: right;
+  font-size: 12px;
+  color: #5968d8;
+  font-weight: bold;
+}
+
+.best-day {
+  margin-top: 20px;
+  padding: 16px;
+
+  background: #fff8e8;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  color: #a36d13;
+
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+.streak-box {
+  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      #fff1e8,
+      #fff8ef
+    );
+
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.streak-fire {
+  font-size: 38px;
+}
+
+.streak-number {
+  font-size: 32px;
+  font-weight: 900;
+  color: #e26c32;
+}
+
+
+/* =====================================================
+   RECORDS
+===================================================== */
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 5px;
+
+  border-bottom:
+    1px solid #eee;
+
+  cursor: pointer;
+}
+
+.history-date {
+  font-weight: bold;
+}
+
+.history-time {
+  color: #667eea;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+.achievement-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+}
+
+.achievement {
+  padding: 15px;
+
+  border-radius: 16px;
+
+  background: #f0f1f5;
+
+  color: #999;
+
+  border:
+    2px solid #e5e5ea;
+}
+
+.achievement.unlocked {
+  background:
+    linear-gradient(
+      135deg,
+      #fff8dc,
+      #fff1b9
+    );
+
+  color: #8c6719;
+
+  border-color: #f1d776;
+}
+
+.achievement-icon {
+  font-size: 28px;
+}
+
+.achievement-title {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.achievement-description {
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.lock {
+  float: right;
+}
+
+
+/* =====================================================
+   SUBJECT CHART
+===================================================== */
+
+.subject-chart-row {
+  display: grid;
+
+  grid-template-columns:
+    55px 1fr 75px;
+
+  gap: 9px;
+
+  align-items: center;
+
+  margin-bottom: 13px;
+}
+
+.subject-name {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.subject-bar-bg {
+  height: 22px;
+
+  background: #eeeef5;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.subject-bar {
+  height: 100%;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #667eea,
+      #a078eb
+    );
+}
+
+.subject-time {
+  text-align: right;
+
+  color: #5968d8;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   GOAL
+===================================================== */
+
+.goal-input-area {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+}
+
+.goal-input-area input {
+  width: 100%;
+}
+
+.goal-save {
+  grid-column:
+    1 / -1;
+}
+
+.progress-container {
+  width: 100%;
+
+  height: 15px;
+
+  background: #e7e9f2;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-top: 15px;
+}
+
+.progress {
+  height: 100%;
+
+  width: 0%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #667eea,
+      #a078eb
+    );
+
+  border-radius: 20px;
+
+  transition: width .4s;
+}
+
+.goal-message {
+  text-align: center;
+  margin-top: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+.data-button {
+  width: 100%;
+
+  margin-bottom: 10px;
+
+  padding: 15px;
+}
+
+.export-button {
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #8e7bea
+    );
+}
+
+.import-button {
+  background:
+    linear-gradient(
+      135deg,
+      #43a47a,
+      #5cba8e
+    );
+}
+
+.delete-button {
+  background: #fff0f1;
+  color: #d95360;
+
+  border:
+    2px solid #ffd9dd;
+}
+
+.data-info {
+  background: #f7f8fc;
+
+  border-radius: 15px;
+
+  padding: 15px;
+
+  margin-top: 15px;
+
+  font-size: 13px;
+
+  color: #666;
+
+  line-height: 1.8;
+}
+
+.backup-message {
+  text-align: center;
+  color: #4b9b70;
+  min-height: 22px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.back-button {
+  background: #eeeef5;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  padding:
+    15px 0 30px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:600px) {
+
+  main {
+    padding: 12px;
+  }
+
+  .nav-buttons {
+    grid-template-columns:
+      repeat(5,1fr);
+  }
+
+  .nav-button {
+    font-size: 10px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subject-grid {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  .countdown-number {
+    font-size: 36px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <h1>STUDY⁺</h1>
+
+  <p>
+    小さな努力を大きな未来へ
+  </p>
+
+  <div class="start-date">
+    🌱 2026.07 START
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<div class="nav-buttons">
+
+  <button
+    class="nav-button active"
+    id="homeButton"
+    onclick="showPage('home')"
+  >
+    🏠 今日
+  </button>
+
+  <button
+    class="nav-button"
+    id="reportButton"
+    onclick="showPage('report')"
+  >
+    📊 週間
+  </button>
+
+  <button
+    class="nav-button"
+    id="monthButton"
+    onclick="showPage('month')"
+  >
+    🗓️ 月間
+  </button>
+
+  <button
+    class="nav-button"
+    id="achievementButton"
+    onclick="showPage('achievement')"
+  >
+    🏆 実績
+  </button>
+
+  <button
+    class="nav-button"
+    id="dataButton"
+    onclick="showPage('data')"
+  >
+    ⚙️ 管理
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section
+  id="homePage"
+  class="page active"
+>
+
+
+<!-- 受験カウントダウン -->
+
+<div class="card countdown-card">
+
+  <div class="countdown-label">
+    🎓 入試まであと
+  </div>
+
+  <div
+    class="countdown-number"
+    id="countdownNumber"
+  >
+    --日
+  </div>
+
+  <div
+    class="countdown-date"
+    id="countdownDate"
+  >
+    受験日を設定してください
+  </div>
+
+  <div class="countdown-setting">
+
+    <input
+      type="date"
+      id="examDate"
+    >
+
+    <button
+      onclick="saveExamDate()"
+      style="
+        margin-top:8px;
+        background:#d99b37;
+      "
+    >
+      受験日を保存
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- 累計 -->
+
+<div class="card">
+
+  <div class="total-study">
+
+    <div class="small">
+      🌱 今まで積み重ねた勉強時間
+    </div>
+
+    <div
+      class="big"
+      id="totalStudy"
+    >
+      0分
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- 今週 -->
+
+<div class="card">
+
+  <h2>
+    📊 今週の記録
+  </h2>
+
+  <div class="summary-grid">
+
+    <div class="summary-box study-box">
+
+      <div class="summary-title">
+        📚 勉強時間
+      </div>
+
+      <div
+        class="summary-number"
+        id="homeStudy"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box youtube-box">
+
+      <div class="summary-title">
+        ▶️ YouTube
+      </div>
+
+      <div
+        class="summary-number"
+        id="homeYoutube"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box goal-box">
+
+      <div class="summary-title">
+        🎯 目標
+      </div>
+
+      <div
+        class="summary-number"
+        id="homeGoal"
+      >
+        0%
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="comparison"
+    id="homeComparison"
+  >
+  </div>
+
+</div>
+
+
+<!-- 連続日数 -->
+
+<div class="card">
+
+  <div class="streak-box">
+
+    <div class="streak-fire">
+      🔥
+    </div>
+
+    <div
+      class="streak-number"
+      id="streakNumber"
+    >
+      0日
+    </div>
+
+    <div>
+      連続勉強記録！
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- 週間目標 -->
+
+<div class="card">
+
+  <h2>
+    🎯 今週の勉強目標
+  </h2>
+
+  <div class="goal-input-area">
+
+    <input
+      type="number"
+      id="goalHours"
+      min="0"
+      placeholder="時間"
+    >
+
+    <input
+      type="number"
+      id="goalMinutes"
+      min="0"
+      max="59"
+      placeholder="分"
+    >
+
+    <button
+      class="goal-save"
+      onclick="saveGoal()"
+    >
+      目標を保存
+    </button>
+
+  </div>
+
+  <div class="progress-container">
+
+    <div
+      class="progress"
+      id="progress"
+    ></div>
+
+  </div>
+
+  <div
+    class="goal-message"
+    id="goalMessage"
+  >
+    目標を設定してみよう！
+  </div>
+
+</div>
+
+
+<!-- 記録 -->
+
+<div class="card">
+
+  <h2>
+    ✏️ 今日の勉強を記録
+  </h2>
+
+
+  <div class="input-group">
+
+    <label>
+      📅 日付
+    </label>
+
+    <input
+      type="date"
+      id="date"
+      onchange="loadDay()"
+    >
+
+  </div>
+
+
+  <div class="input-group">
+
+    <label>
+      📚 勉強時間
+    </label>
+
+    <div class="time-inputs">
+
+      <div class="time-box">
+
+        <input
+          type="number"
+          id="studyHours"
+          min="0"
+          placeholder="時間"
+        >
+
+        <span class="time-unit">
+          時間
+        </span>
+
+      </div>
+
+      <div class="time-box">
+
+        <input
+          type="number"
+          id="studyMinutes"
+          min="0"
+          max="59"
+          placeholder="分"
+        >
+
+        <span class="time-unit">
+          分
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- 科目別 -->
+
+  <button
+    class="subject-toggle"
+    onclick="toggleSubjectArea()"
+  >
+    ＋ 科目別にも記録する
+  </button>
+
+
+  <div
+    class="subject-area"
+    id="subjectArea"
+  >
+
+    <div class="subject-grid">
+
+
+      <div class="subject-item">
+
+        <label>
+          🔢 数学
+        </label>
+
+        <input
+          type="number"
+          id="math"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+
+      <div class="subject-item">
+
+        <label>
+          🇬🇧 英語
+        </label>
+
+        <input
+          type="number"
+          id="english"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+
+      <div class="subject-item">
+
+        <label>
+          📖 国語
+        </label>
+
+        <input
+          type="number"
+          id="japanese"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+
+      <div class="subject-item">
+
+        <label>
+          🔬 理科
+        </label>
+
+        <input
+          type="number"
+          id="science"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+
+      <div class="subject-item">
+
+        <label>
+          🌏 社会
+        </label>
+
+        <input
+          type="number"
+          id="social"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+
+      <div class="subject-item">
+
+        <label>
+          📚 その他
+        </label>
+
+        <input
+          type="number"
+          id="subjectOther"
+          min="0"
+          placeholder="分"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="subject-total"
+      id="subjectTotal"
+    >
+      科目別合計：0分
+    </div>
+
+  </div>
+
+
+  <div class="input-group">
+
+    <label>
+      ▶️ YouTubeを見た時間
+    </label>
+
+    <div class="time-inputs">
+
+      <div class="time-box">
+
+        <input
+          type="number"
+          id="youtubeHours"
+          min="0"
+          placeholder="時間"
+        >
+
+        <span class="time-unit">
+          時間
+        </span>
+
+      </div>
+
+      <div class="time-box">
+
+        <input
+          type="number"
+          id="youtubeMinutes"
+          min="0"
+          max="59"
+          placeholder="分"
+        >
+
+        <span class="time-unit">
+          分
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="input-group">
+
+    <label>
+      📝 その他の予定
+    </label>
+
+    <textarea
+      id="other"
+      placeholder="例：部活、塾、学校行事など"
+    ></textarea>
+
+  </div>
+
+
+  <button
+    class="save-button"
+    onclick="saveDay()"
+  >
+    💾 この日の記録を保存
+  </button>
+
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+</div>
+
+
+<!-- 最近の記録 -->
+
+<div class="card">
+
+  <h2>
+    🗓️ 最近の記録
+  </h2>
+
+  <div id="history"></div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     WEEK REPORT
+===================================================== -->
+
+<section
+  id="reportPage"
+  class="page"
+>
+
+<div class="card">
+
+  <h2>
+    📊 週間レポート
+  </h2>
+
+  <div id="weekList"></div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     WEEK DETAIL
+===================================================== -->
+
+<section
+  id="detailPage"
+  class="page"
+>
+
+<button
+  class="back-button"
+  onclick="showPage('report')"
+>
+  ← 週間レポートに戻る
+</button>
+
+
+<div class="card">
+
+  <h2 id="detailTitle">
+    📅 週の詳細
+  </h2>
+
+  <div class="summary-grid">
+
+    <div class="summary-box study-box">
+
+      <div class="summary-title">
+        📚 勉強時間
+      </div>
+
+      <div
+        class="summary-number"
+        id="detailStudy"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box youtube-box">
+
+      <div class="summary-title">
+        ▶️ YouTube
+      </div>
+
+      <div
+        class="summary-number"
+        id="detailYoutube"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box goal-box">
+
+      <div class="summary-title">
+        📅 勉強した日
+      </div>
+
+      <div
+        class="summary-number"
+        id="detailDays"
+      >
+        0日
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="day-chart"
+    id="dayChart"
+    style="margin-top:20px;"
+  ></div>
+
+
+  <div
+    class="best-day"
+    id="bestDay"
+  ></div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MONTH REPORT
+===================================================== -->
+
+<section
+  id="monthPage"
+  class="page"
+>
+
+<div class="card">
+
+  <h2>
+    🗓️ 月間レポート
+  </h2>
+
+  <div id="monthList"></div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MONTH DETAIL
+===================================================== -->
+
+<section
+  id="monthDetailPage"
+  class="page"
+>
+
+<button
+  class="back-button"
+  onclick="showPage('month')"
+>
+  ← 月間レポートに戻る
+</button>
+
+
+<div class="card">
+
+  <h2 id="monthDetailTitle">
+    🗓️ 月の詳細
+  </h2>
+
+
+  <div class="summary-grid">
+
+    <div class="summary-box study-box">
+
+      <div class="summary-title">
+        📚 勉強時間
+      </div>
+
+      <div
+        class="summary-number"
+        id="monthStudy"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box youtube-box">
+
+      <div class="summary-title">
+        ▶️ YouTube
+      </div>
+
+      <div
+        class="summary-number"
+        id="monthYoutube"
+      >
+        0分
+      </div>
+
+    </div>
+
+
+    <div class="summary-box goal-box">
+
+      <div class="summary-title">
+        📅 勉強した日
+      </div>
+
+      <div
+        class="summary-number"
+        id="monthDays"
+      >
+        0日
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="comparison"
+    id="monthComparison"
+  ></div>
+
+
+  <div
+    class="best-day"
+    id="monthBestDay"
+  ></div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>
+    📈 1日ごとの勉強時間
+  </h2>
+
+  <div id="monthDayChart"></div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>
+    📚 科目別
+  </h2>
+
+  <div id="monthSubjectChart"></div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENT
+===================================================== -->
+
+<section
+  id="achievementPage"
+  class="page"
+>
+
+
+<div class="card">
+
+  <h2>
+    🏆 実績
+  </h2>
+
+  <p
+    style="
+      color:#777;
+      font-size:13px;
+    "
+  >
+    勉強を続けると、新しい実績が解放されます。
+  </p>
+
+
+  <div
+    class="achievement-grid"
+    id="achievementList"
+  ></div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>
+    🏅 バッジ
+  </h2>
+
+  <div
+    class="achievement-grid"
+    id="badgeList"
+  ></div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>
+    📚 科目別の累計
+  </h2>
+
+  <div id="totalSubjectChart"></div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     DATA
+===================================================== -->
+
+<section
+  id="dataPage"
+  class="page"
+>
+
+
+<div class="card">
+
+  <h2>
+    ⚙️ データ管理
+  </h2>
+
+
+  <button
+    class="data-button export-button"
+    onclick="exportData()"
+  >
+    💾 データを書き出す
+  </button>
+
+
+  <button
+    class="data-button import-button"
+    onclick="
+      document
+      .getElementById('importFile')
+      .click()
+    "
+  >
+    📥 データを復元する
+  </button>
+
+
+  <input
+    type="file"
+    id="importFile"
+    accept=".json,application/json"
+    style="display:none"
+    onchange="importData(event)"
+  >
+
+
+  <button
+    class="data-button delete-button"
+    onclick="deleteAllData()"
+  >
+    🗑️ すべてのデータを削除
+  </button>
+
+
+  <div
+    class="backup-message"
+    id="backupMessage"
+  ></div>
+
+
+  <div class="data-info">
+
+    💡
+    大切な記録なので、月1回くらい
+    「データを書き出す」でバックアップしておくのがおすすめです。
+
+    <br><br>
+
+    🌱 2026年7月から何年でも記録できます。
+
+  </div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>
+    📊 保存状況
+  </h2>
+
+  <div id="dataStatus"></div>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  STUDY⁺ 🌸
+
+  <br>
+
+  小さな努力を大きな未来へ
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+const START_DATE =
+  "2026-07-01";
+
+
+let records =
+  JSON.parse(
+    localStorage.getItem(
+      "studyRecords"
+    ) || "{}"
+  );
+
+
+let goalMinutes =
+  Number(
+    localStorage.getItem(
+      "studyGoalMinutes"
+    ) || 0
+  );
+
+
+let monthlyGoalMinutes =
+  Number(
+    localStorage.getItem(
+      "studyMonthlyGoalMinutes"
+    ) || 0
+  );
+
+
+let examDate =
+  localStorage.getItem(
+    "studyExamDate"
+  ) || "";
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+const SUBJECTS = {
+
+  math: "数学",
+
+  english: "英語",
+
+  japanese: "国語",
+
+  science: "理科",
+
+  social: "社会",
+
+  subjectOther: "その他"
+
+};
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(date) {
+
+  const y =
+    date.getFullYear();
+
+  const m =
+    String(
+      date.getMonth()+1
+    ).padStart(2,"0");
+
+  const d =
+    String(
+      date.getDate()
+    ).padStart(2,"0");
+
+  return `${y}-${m}-${d}`;
+
+}
+
+
+function getToday() {
+
+  return formatDate(
+    new Date()
+  );
+
+}
+
+
+function isBeforeStart(date) {
+
+  return date < START_DATE;
+
+}
+
+
+/* =====================================================
+   FORMAT MINUTES
+===================================================== */
+
+function formatMinutes(minutes) {
+
+  minutes =
+    Math.round(
+      Number(minutes || 0)
+    );
+
+
+  const hours =
+    Math.floor(
+      minutes / 60
+    );
+
+
+  const mins =
+    minutes % 60;
+
+
+  if (
+    hours === 0 &&
+    mins === 0
+  ) {
+
+    return "0分";
+
+  }
+
+
+  if (
+    hours === 0
+  ) {
+
+    return `${mins}分`;
+
+  }
+
+
+  if (
+    mins === 0
+  ) {
+
+    return `${hours}時間`;
+
+  }
+
+
+  return `${hours}時間 ${mins}分`;
+
+}
+
+
+/* =====================================================
+   INPUT MINUTES
+===================================================== */
+
+function getInputMinutes(
+  hoursId,
+  minutesId
+) {
+
+  const h =
+    Number(
+      document.getElementById(
+        hoursId
+      ).value || 0
+    );
+
+
+  const m =
+    Number(
+      document.getElementById(
+        minutesId
+      ).value || 0
+    );
+
+
+  return h * 60 + m;
+
+}
+
+
+/* =====================================================
+   SET INPUT
+===================================================== */
+
+function setTimeInputs(
+  minutes,
+  hoursId,
+  minutesId
+) {
+
+  minutes =
+    Number(
+      minutes || 0
+    );
+
+
+  document.getElementById(
+    hoursId
+  ).value =
+    Math.floor(
+      minutes / 60
+    ) || "";
+
+
+  document.getElementById(
+    minutesId
+  ).value =
+    minutes % 60 || "";
+
+}
+
+
+/* =====================================================
+   WEEK
+===================================================== */
+
+function getWeekRange(offset=0) {
+
+  const date =
+    new Date();
+
+
+  date.setHours(
+    0,0,0,0
+  );
+
+
+  const day =
+    date.getDay();
+
+
+  const diff =
+    day === 0
+      ? -6
+      : 1-day;
+
+
+  const monday =
+    new Date(date);
+
+
+  monday.setDate(
+    date.getDate()
+    + diff
+    + offset*7
+  );
+
+
+  const sunday =
+    new Date(monday);
+
+
+  sunday.setDate(
+    monday.getDate()+6
+  );
+
+
+  return {
+    start:monday,
+    end:sunday
+  };
+
+}
+
+
+function getWeekRangeFromDate(
+  dateString
+) {
+
+  const date =
+    new Date(
+      dateString+
+      "T00:00:00"
+    );
+
+
+  const day =
+    date.getDay();
+
+
+  const diff =
+    day === 0
+      ? -6
+      : 1-day;
+
+
+  const monday =
+    new Date(date);
+
+
+  monday.setDate(
+    date.getDate()+diff
+  );
+
+
+  const sunday =
+    new Date(monday);
+
+
+  sunday.setDate(
+    monday.getDate()+6
+  );
+
+
+  return {
+    start:monday,
+    end:sunday
+  };
+
+}
+
+
+/* =====================================================
+   MONTH
+===================================================== */
+
+function getMonthRangeFromDate(
+  dateString
+) {
+
+  const date =
+    new Date(
+      dateString+
+      "T00:00:00"
+    );
+
+
+  return {
+
+    start:
+      new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        1
+      ),
+
+    end:
+      new Date(
+        date.getFullYear(),
+        date.getMonth()+1,
+        0
+      )
+
+  };
+
+}
+
+
+/* =====================================================
+   CALCULATE WEEK
+===================================================== */
+
+function calculateWeek(range) {
+
+  let study=0;
+  let youtube=0;
+  let days=0;
+
+
+  const date =
+    new Date(
+      range.start
+    );
+
+
+  while(
+    date <= range.end
+  ) {
+
+    const key =
+      formatDate(date);
+
+
+    if (
+      key >= START_DATE &&
+      records[key]
+    ) {
+
+      study +=
+        Number(
+          records[key]
+            .studyMinutes || 0
+        );
+
+
+      youtube +=
+        Number(
+          records[key]
+            .youtubeMinutes || 0
+        );
+
+
+      if (
+        records[key]
+          .studyMinutes > 0
+      ) {
+
+        days++;
+
+      }
+
+    }
+
+
+    date.setDate(
+      date.getDate()+1
+    );
+
+  }
+
+
+  return {
+    study,
+    youtube,
+    days
+  };
+
+}
+
+
+/* =====================================================
+   CALCULATE MONTH
+===================================================== */
+
+function calculateMonth(range) {
+
+  let study=0;
+  let youtube=0;
+  let days=0;
+
+
+  const date =
+    new Date(
+      range.start
+    );
+
+
+  while(
+    date <= range.end
+  ) {
+
+    const key =
+      formatDate(date);
+
+
+    if (
+      key >= START_DATE &&
+      records[key]
+    ) {
+
+      study +=
+        Number(
+          records[key]
+            .studyMinutes || 0
+        );
+
+
+      youtube +=
+        Number(
+          records[key]
+            .youtubeMinutes || 0
+        );
+
+
+      if (
+        records[key]
+          .studyMinutes > 0
+      ) {
+
+        days++;
+
+      }
+
+    }
+
+
+    date.setDate(
+      date.getDate()+1
+    );
+
+  }
+
+
+  return {
+    study,
+    youtube,
+    days
+  };
+
+}
+
+
+/* =====================================================
+   TOTAL STUDY
+===================================================== */
+
+function getTotalStudy() {
+
+  return Object.values(records)
+    .reduce(
+      (sum,r) =>
+        sum +
+        Number(
+          r.studyMinutes || 0
+        ),
+      0
+    );
+
+}
+
+
+/* =====================================================
+   TOTAL SUBJECTS
+===================================================== */
+
+function getTotalSubjects() {
+
+  const totals = {
+
+    math:0,
+    english:0,
+    japanese:0,
+    science:0,
+    social:0,
+    subjectOther:0
+
+  };
+
+
+  Object.values(records)
+    .forEach(
+      record => {
+
+        if (
+          record.subjects
+        ) {
+
+          Object.keys(totals)
+            .forEach(
+              key => {
+
+                totals[key] +=
+                  Number(
+                    record.subjects[key]
+                    || 0
+                  );
+
+              }
+            );
+
+        }
+
+      }
+    );
+
+
+  return totals;
+
+}
+
+
+/* =====================================================
+   PAGE SWITCH
+===================================================== */
+
+function showPage(page) {
+
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      p =>
+        p.classList.remove(
+          "active"
+        )
+    );
+
+
+  document
+    .querySelectorAll(
+      ".nav-button"
+    )
+    .forEach(
+      b =>
+        b.classList.remove(
+          "active"
+        )
+    );
+
+
+  const pageMap = {
+
+    home:"homePage",
+
+    report:"reportPage",
+
+    month:"monthPage",
+
+    achievement:"achievementPage",
+
+    data:"dataPage",
+
+    detail:"detailPage",
+
+    monthDetail:
+      "monthDetailPage"
+
+  };
+
+
+  document
+    .getElementById(
+      pageMap[page]
+    )
+    .classList.add(
+      "active"
+    );
+
+
+  const buttonMap = {
+
+    home:"homeButton",
+
+    report:"reportButton",
+
+    month:"monthButton",
+
+    achievement:
+      "achievementButton",
+
+    data:"dataButton"
+
+  };
+
+
+  if (
+    buttonMap[page]
+  ) {
+
+    document
+      .getElementById(
+        buttonMap[page]
+      )
+      .classList.add(
+        "active"
+      );
+
+  }
+
+
+  if (
+    page === "home"
+  ) {
+
+    updateHome();
+
+  }
+
+
+  if (
+    page === "report"
+  ) {
+
+    updateWeekList();
+
+  }
+
+
+  if (
+    page === "month"
+  ) {
+
+    updateMonthList();
+
+  }
+
+
+  if (
+    page === "achievement"
+  ) {
+
+    updateAchievements();
+
+  }
+
+
+  if (
+    page === "data"
+  ) {
+
+    updateDataStatus();
+
+  }
+
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+function saveExamDate() {
+
+  const value =
+    document.getElementById(
+      "examDate"
+    ).value;
+
+
+  if (!value) {
+
+    alert(
+      "受験日を選んでください！"
+    );
+
+    return;
+
+  }
+
+
+  examDate =
+    value;
+
+
+  localStorage.setItem(
+    "studyExamDate",
+    examDate
+  );
+
+
+  updateCountdown();
+
+}
+
+
+function updateCountdown() {
+
+  const number =
+    document.getElementById(
+      "countdownNumber"
+    );
+
+
+  const dateText =
+    document.getElementById(
+      "countdownDate"
+    );
+
+
+  if (!examDate) {
+
+    number.textContent =
+      "--日";
+
+    dateText.textContent =
+      "受験日を設定してください";
+
+    return;
+
+  }
+
+
+  const today =
+    new Date();
+
+
+  today.setHours(
+    0,0,0,0
+  );
+
+
+  const exam =
+    new Date(
+      examDate+
+      "T00:00:00"
+    );
+
+
+  const diff =
+    Math.ceil(
+      (
+        exam - today
+      ) /
+      86400000
+    );
+
+
+  if (
+    diff > 0
+  ) {
+
+    number.textContent =
+      diff + "日";
+
+
+    dateText.textContent =
+      `${exam.getFullYear()}年
+       ${exam.getMonth()+1}月
+       ${exam.getDate()}日`;
+
+  }
+
+
+  else if (
+    diff === 0
+  ) {
+
+    number.textContent =
+      "今日！";
+
+    dateText.textContent =
+      "🌸 力を出し切ろう！";
+
+  }
+
+
+  else {
+
+    number.textContent =
+      "終了";
+
+
+    dateText.textContent =
+      "受験おつかれさま！";
+
+  }
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function updateHome() {
+
+
+  const week =
+    calculateWeek(
+      getWeekRange(0)
+    );
+
+
+  const last =
+    calculateWeek(
+      getWeekRange(-1)
+    );
+
+
+  document.getElementById(
+    "homeStudy"
+  ).textContent =
+    formatMinutes(
+      week.study
+    );
+
+
+  document.getElementById(
+    "homeYoutube"
+  ).textContent =
+    formatMinutes(
+      week.youtube
+    );
+
+
+  document.getElementById(
+    "totalStudy"
+  ).textContent =
+    formatMinutes(
+      getTotalStudy()
+    );
+
+
+  updateComparison(
+    week.study,
+    last.study
+  );
+
+
+  updateGoal(
+    week.study
+  );
+
+
+  updateStreak();
+
+  updateHistory();
+
+  updateCountdown();
+
+}
+
+
+/* =====================================================
+   COMPARISON
+===================================================== */
+
+function updateComparison(
+  current,
+  previous
+) {
+
+  const box =
+    document.getElementById(
+      "homeComparison"
+    );
+
+
+  const diff =
+    current-previous;
+
+
+  if(diff>0){
+
+    box.className =
+      "comparison positive";
+
+    box.textContent =
+      `🎉 先週より
+       ${formatMinutes(diff)}
+       増えたよ！`;
+
+  }
+
+  else if(diff<0){
+
+    box.className =
+      "comparison negative";
+
+    box.textContent =
+      `💪 先週より
+       ${formatMinutes(
+         Math.abs(diff)
+       )}
+       少なかったよ。`;
+
+  }
+
+  else{
+
+    box.className =
+      "comparison neutral";
+
+    box.textContent =
+      "📊 先週と同じ勉強時間だよ！";
+
+  }
+
+}
+
+
+/* =====================================================
+   GOAL
+===================================================== */
+
+function saveGoal(){
+
+  const h =
+    Number(
+      document.getElementById(
+        "goalHours"
+      ).value||0
+    );
+
+
+  const m =
+    Number(
+      document.getElementById(
+        "goalMinutes"
+      ).value||0
+    );
+
+
+  goalMinutes =
+    h*60+m;
+
+
+  localStorage.setItem(
+    "studyGoalMinutes",
+    goalMinutes
+  );
+
+
+  updateHome();
+
+}
+
+
+function updateGoal(study){
+
+  setTimeInputs(
+    goalMinutes,
+    "goalHours",
+    "goalMinutes"
+  );
+
+
+  const progress =
+    document.getElementById(
+      "progress"
+    );
+
+
+  const message =
+    document.getElementById(
+      "goalMessage"
+    );
+
+
+  if(!goalMinutes){
+
+    progress.style.width =
+      "0%";
+
+    message.textContent =
+      "目標を設定してみよう！";
+
+    document.getElementById(
+      "homeGoal"
+    ).textContent =
+      "0%";
+
+    return;
+
+  }
+
+
+  const percent =
+    Math.min(
+      100,
+      study/
+      goalMinutes*
+      100
+    );
+
+
+  progress.style.width =
+    percent+"%";
+
+
+  document.getElementById(
+    "homeGoal"
+  ).textContent =
+    Math.round(percent)+"%";
+
+
+  if(
+    study>=goalMinutes
+  ){
+
+    message.textContent =
+      "🎉 今週の目標達成！";
+
+  }
+
+  else{
+
+    message.textContent =
+      `あと
+       ${formatMinutes(
+         goalMinutes-study
+       )}
+       で目標達成！`;
+
+  }
+
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+function updateStreak(){
+
+  let date =
+    new Date();
+
+
+  let streak=0;
+
+
+  /*
+    今日勉強していない場合は
+    昨日から確認
+  */
+
+  let todayKey =
+    formatDate(date);
+
+
+  if(
+    !records[todayKey] ||
+    Number(
+      records[todayKey]
+        .studyMinutes||0
+    )===0
+  ){
+
+    date.setDate(
+      date.getDate()-1
+    );
+
+  }
+
+
+  while(true){
+
+    const key =
+      formatDate(date);
+
+
+    if(
+      key<START_DATE
+    ){
+
+      break;
+
+    }
+
+
+    if(
+      records[key] &&
+      Number(
+        records[key]
+          .studyMinutes||0
+      )>0
+    ){
+
+      streak++;
+
+      date.setDate(
+        date.getDate()-1
+      );
+
+    }
+
+    else{
+
+      break;
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "streakNumber"
+  ).textContent =
+    streak+"日";
+
+}
+
+
+/* =====================================================
+   LOAD DAY
+===================================================== */
+
+function loadDay(){
+
+  const date =
+    document.getElementById(
+      "date"
+    ).value;
+
+
+  if(
+    isBeforeStart(date)
+  ){
+
+    alert(
+      "2026年7月1日より前の日付は記録できません。"
+    );
+
+    document.getElementById(
+      "date"
+    ).value =
+      START_DATE;
+
+    return;
+
+  }
+
+
+  const record =
+    records[date];
+
+
+  if(record){
+
+    setTimeInputs(
+      record.studyMinutes,
+      "studyHours",
+      "studyMinutes"
+    );
+
+
+    setTimeInputs(
+      record.youtubeMinutes,
+      "youtubeHours",
+      "youtubeMinutes"
+    );
+
+
+    document.getElementById(
+      "other"
+    ).value =
+      record.other||"";
+
+
+    if(record.subjects){
+
+      document.getElementById(
+        "subjectArea"
+      ).classList.add(
+        "open"
+      );
+
+
+      Object.keys(
+        SUBJECTS
+      ).forEach(
+        key=>{
+
+          document.getElementById(
+            key
+          ).value =
+            record.subjects[key]||"";
+
+        }
+      );
+
+      updateSubjectTotal();
+
+    }
+
+    else{
+
+      clearSubjects();
+
+    }
+
+  }
+
+  else{
+
+    setTimeInputs(
+      0,
+      "studyHours",
+      "studyMinutes"
+    );
+
+    setTimeInputs(
+      0,
+      "youtubeHours",
+      "youtubeMinutes"
+    );
+
+    document.getElementById(
+      "other"
+    ).value="";
+
+    clearSubjects();
+
+  }
+
+}
+
+
+/* =====================================================
+   SUBJECT AREA
+===================================================== */
+
+function toggleSubjectArea(){
+
+  document
+    .getElementById(
+      "subjectArea"
+    )
+    .classList.toggle(
+      "open"
+    );
+
+}
+
+
+function clearSubjects(){
+
+  Object.keys(
+    SUBJECTS
+  ).forEach(
+    key=>{
+
+      document.getElementById(
+        key
+      ).value="";
+
+    }
+  );
+
+
+  updateSubjectTotal();
+
+}
+
+
+function getSubjects(){
+
+  const subjects={};
+
+
+  Object.keys(
+    SUBJECTS
+  ).forEach(
+    key=>{
+
+      subjects[key] =
+        Number(
+          document.getElementById(
+            key
+          ).value||0
+        );
+
+    }
+  );
+
+
+  return subjects;
+
+}
+
+
+function updateSubjectTotal(){
+
+  const subjects =
+    getSubjects();
+
+
+  const total =
+    Object.values(
+      subjects
+    ).reduce(
+      (a,b)=>a+b,
+      0
+    );
+
+
+  document.getElementById(
+    "subjectTotal"
+  ).textContent =
+    "科目別合計："+formatMinutes(total);
+
+}
+
+
+/* =====================================================
+   SAVE DAY
+===================================================== */
+
+function saveDay(){
+
+  const date =
+    document.getElementById(
+      "date"
+    ).value;
+
+
+  if(!date){
+
+    alert(
+      "日付を選んでください！"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    isBeforeStart(date)
+  ){
+
+    alert(
+      "2026年7月1日より前の日付は記録できません。"
+    );
+
+    return;
+
+  }
+
+
+  const study =
+    getInputMinutes(
+      "studyHours",
+      "studyMinutes"
+    );
+
+
+  const youtube =
+    getInputMinutes(
+      "youtubeHours",
+      "youtubeMinutes"
+    );
+
+
+  const other =
+    document.getElementById(
+      "other"
+    ).value.trim();
+
+
+  const subjects =
+    getSubjects();
+
+
+  const subjectTotal =
+    Object.values(
+      subjects
+    ).reduce(
+      (a,b)=>a+b,
+      0
+    );
+
+
+  records[date]={
+
+    studyMinutes:
+      study,
+
+    youtubeMinutes:
+      youtube,
+
+    other,
+
+    subjects:
+      subjectTotal>0
+        ? subjects
+        : null
+
+  };
+
+
+  localStorage.setItem(
+    "studyRecords",
+    JSON.stringify(
+      records
+    )
+  );
+
+
+  document.getElementById(
+    "message"
+  ).textContent =
+    "✅ 保存しました！";
+
+
+  updateHome();
+
+
+  setTimeout(
+    ()=>{
+      document.getElementById(
+        "message"
+      ).textContent="";
+    },
+    2000
+  );
+
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function updateHistory(){
+
+  const container =
+    document.getElementById(
+      "history"
+    );
+
+
+  const keys =
+    Object.keys(records)
+      .filter(
+        k=>k>=START_DATE
+      )
+      .sort()
+      .reverse()
+      .slice(0,10);
+
+
+  if(!keys.length){
+
+    container.innerHTML =
+      `
+      <div
+        style="
+          text-align:center;
+          color:#999;
+          padding:20px;
+        "
+      >
+        まだ記録がありません。
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML="";
+
+
+  const weekdays =
+    [
+      "日","月","火",
+      "水","木","金","土"
+    ];
+
+
+  keys.forEach(
+    key=>{
+
+      const record =
+        records[key];
+
+
+      const date =
+        new Date(
+          key+"T00:00:00"
+        );
+
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "history-item";
+
+
+      item.innerHTML = `
+
+        <div
+          class="history-date"
+        >
+          ${date.getMonth()+1}/
+          ${date.getDate()}
+          （${weekdays[
+            date.getDay()
+          ]}）
+        </div>
+
+        <div
+          class="history-time"
+        >
+          📚
+          ${formatMinutes(
+            record.studyMinutes
+          )}
+        </div>
+
+      `;
+
+
+      item.onclick=()=>{
+
+        document.getElementById(
+          "date"
+        ).value=key;
+
+        loadDay();
+
+        showPage("home");
+
+      };
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   WEEK LIST
+===================================================== */
+
+function updateWeekList(){
+
+  const container =
+    document.getElementById(
+      "weekList"
+    );
+
+
+  container.innerHTML="";
+
+
+  let monday =
+    getWeekRangeFromDate(
+      START_DATE
+    ).start;
+
+
+  const currentMonday =
+    getWeekRange(0).start;
+
+
+  while(
+    monday<=currentMonday
+  ){
+
+    const sunday =
+      new Date(monday);
+
+
+    sunday.setDate(
+      monday.getDate()+6
+    );
+
+
+    const range={
+      start:
+        new Date(monday),
+      end:
+        sunday
+    };
+
+
+    const summary =
+      calculateWeek(range);
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "week-card";
+
+
+    if(
+      formatDate(monday)
+      ===
+      formatDate(currentMonday)
+    ){
+
+      card.classList.add(
+        "current"
+      );
+
+    }
+
+
+    card.innerHTML = `
+
+      <span
+        class="week-arrow"
+      >
+        ›
+      </span>
+
+      <div
+        class="week-card-title"
+      >
+        ${
+          formatDate(monday)
+          ===
+          formatDate(currentMonday)
+          ? "📌 今週"
+          : "📅 "+monday.getFullYear()
+            +"年"+(monday.getMonth()+1)
+            +"月"
+        }
+      </div>
+
+      <div
+        class="week-card-sub"
+      >
+        ${formatDate(monday)}
+        〜
+        ${formatDate(sunday)}
+      </div>
+
+      <div
+        class="week-card-time"
+      >
+        📚
+        ${formatMinutes(
+          summary.study
+        )}
+      </div>
+
+    `;
+
+
+    card.onclick=()=>{
+
+      showWeekDetail(
+        formatDate(monday)
+      );
+
+    };
+
+
+    container.appendChild(
+      card
+    );
+
+
+    monday.setDate(
+      monday.getDate()+7
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   WEEK DETAIL
+===================================================== */
+
+function showWeekDetail(
+  dateString
+){
+
+  const range =
+    getWeekRangeFromDate(
+      dateString
+    );
+
+
+  const summary =
+    calculateWeek(
+      range
+    );
+
+
+  document.getElementById(
+    "detailTitle"
+  ).textContent =
+    `📅 ${formatDate(range.start)}
+     〜
+     ${formatDate(range.end)}`;
+
+
+  document.getElementById(
+    "detailStudy"
+  ).textContent =
+    formatMinutes(
+      summary.study
+    );
+
+
+  document.getElementById(
+    "detailYoutube"
+  ).textContent =
+    formatMinutes(
+      summary.youtube
+    );
+
+
+  document.getElementById(
+    "detailDays"
+  ).textContent =
+    summary.days+"日";
+
+
+  createDayChart(range);
+
+  showPage("detail");
+
+}
+
+
+/* =====================================================
+   WEEK CHART
+===================================================== */
+
+function createDayChart(range){
+
+  const container =
+    document.getElementById(
+      "dayChart"
+    );
+
+
+  container.innerHTML="";
+
+
+  const current =
+    new Date(
+      range.start
+    );
+
+
+  let max=60;
+
+
+  const dates=[];
+
+
+  while(
+    current<=range.end
+  ){
+
+    const date =
+      new Date(current);
+
+
+    dates.push(date);
+
+
+    const key =
+      formatDate(date);
+
+
+    const minutes =
+      records[key]
+        ? Number(
+            records[key]
+              .studyMinutes||0
+          )
+        : 0;
+
+
+    max =
+      Math.max(
+        max,
+        minutes
+      );
+
+
+    current.setDate(
+      current.getDate()+1
+    );
+
+  }
+
+
+  dates.forEach(
+    (date,index)=>{
+
+      const key =
+        formatDate(date);
+
+
+      const minutes =
+        records[key]
+          ? Number(
+              records[key]
+                .studyMinutes||0
+            )
+          : 0;
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "day-row";
+
+
+      const width =
+        minutes===0
+          ? 0
+          : Math.max(
+              5,
+              minutes/max*100
+            );
+
+
+      row.innerHTML = `
+
+        <div
+          class="day-name"
+        >
+          ${[
+            "月","火","水",
+            "木","金","土","日"
+          ][index]}
+        </div>
+
+        <div
+          class="bar-background"
+        >
+          <div
+            class="bar"
+            style="width:${width}%"
+          ></div>
+        </div>
+
+        <div
+          class="day-time"
+        >
+          ${formatMinutes(minutes)}
+        </div>
+
+      `;
+
+
+      row.onclick=()=>{
+
+        document.getElementById(
+          "date"
+        ).value=key;
+
+        loadDay();
+
+        showPage("home");
+
+      };
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MONTH LIST
+===================================================== */
+
+function updateMonthList(){
+
+  const container =
+    document.getElementById(
+      "monthList"
+    );
+
+
+  container.innerHTML="";
+
+
+  const start =
+    new Date(
+      START_DATE+
+      "T00:00:00"
+    );
+
+
+  const startMonth =
+    new Date(
+      start.getFullYear(),
+      start.getMonth(),
+      1
+    );
+
+
+  const today =
+    new Date();
+
+
+  let current =
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      1
+    );
+
+
+  while(
+    current>=startMonth
+  ){
+
+    const range={
+      start:
+        new Date(
+          current.getFullYear(),
+          current.getMonth(),
+          1
+        ),
+
+      end:
+        new Date(
+          current.getFullYear(),
+          current.getMonth()+1,
+          0
+        )
+    };
+
+
+    const summary =
+      calculateMonth(range);
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "month-card";
+
+
+    card.innerHTML = `
+
+      <span
+        class="month-arrow"
+      >
+        ›
+      </span>
+
+      <div
+        class="month-card-title"
+      >
+        🗓️
+        ${current.getFullYear()}年
+        ${current.getMonth()+1}月
+      </div>
+
+      <div
+        class="month-card-time"
+      >
+        📚
+        ${formatMinutes(
+          summary.study
+        )}
+      </div>
+
+      <div
+        class="month-mini-info"
+      >
+
+        <span class="mini-tag">
+          📅 ${summary.days}日
+        </span>
+
+        <span class="mini-tag">
+          ▶️
+          ${formatMinutes(
+            summary.youtube
+          )}
+        </span>
+
+      </div>
+
+    `;
+
+
+    card.onclick=()=>{
+
+      showMonthDetail(
+        formatDate(
+          range.start
+        )
+      );
+
+    };
+
+
+    container.appendChild(
+      card
+    );
+
+
+    current.setMonth(
+      current.getMonth()-1
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   MONTH DETAIL
+===================================================== */
+
+function showMonthDetail(
+  dateString
+){
+
+  const range =
+    getMonthRangeFromDate(
+      dateString
+    );
+
+
+  const summary =
+    calculateMonth(
+      range
+    );
+
+
+  document.getElementById(
+    "monthDetailTitle"
+  ).textContent =
+    `🗓️
+     ${range.start.getFullYear()}年
+     ${range.start.getMonth()+1}月`;
+
+
+  document.getElementById(
+    "monthStudy"
+  ).textContent =
+    formatMinutes(
+      summary.study
+    );
+
+
+  document.getElementById(
+    "monthYoutube"
+  ).textContent =
+    formatMinutes(
+      summary.youtube
+    );
+
+
+  document.getElementById(
+    "monthDays"
+  ).textContent =
+    summary.days+"日";
+
+
+  createMonthDayChart(range);
+
+  createMonthSubjectChart(range);
+
+  showPage("monthDetail");
+
+}
+
+
+/* =====================================================
+   MONTH DAY CHART
+===================================================== */
+
+function createMonthDayChart(
+  range
+){
+
+  const container =
+    document.getElementById(
+      "monthDayChart"
+    );
+
+
+  container.innerHTML="";
+
+
+  const dates=[];
+
+
+  const current =
+    new Date(
+      range.start
+    );
+
+
+  let max=60;
+
+
+  while(
+    current<=range.end
+  ){
+
+    const date =
+      new Date(current);
+
+
+    dates.push(date);
+
+
+    const key =
+      formatDate(date);
+
+
+    const minutes =
+      records[key]
+        ? Number(
+            records[key]
+              .studyMinutes||0
+          )
+        : 0;
+
+
+    max =
+      Math.max(
+        max,
+        minutes
+      );
+
+
+    current.setDate(
+      current.getDate()+1
+    );
+
+  }
+
+
+  dates.forEach(
+    date=>{
+
+      const key =
+        formatDate(date);
+
+
+      const minutes =
+        records[key]
+          ? Number(
+              records[key]
+                .studyMinutes||0
+            )
+          : 0;
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "month-day-row";
+
+
+      const width =
+        minutes===0
+          ? 0
+          : Math.max(
+              5,
+              minutes/max*100
+            );
+
+
+      row.innerHTML = `
+
+        <div
+          class="month-day-label"
+        >
+          ${date.getMonth()+1}/
+          ${date.getDate()}
+        </div>
+
+        <div
+          class="month-bar-background"
+        >
+          <div
+            class="month-bar"
+            style="width:${width}%"
+          ></div>
+        </div>
+
+        <div
+          class="month-day-time"
+        >
+          ${formatMinutes(minutes)}
+        </div>
+
+      `;
+
+
+      row.onclick=()=>{
+
+        document.getElementById(
+          "date"
+        ).value=key;
+
+        loadDay();
+
+        showPage("home");
+
+      };
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MONTH SUBJECT
+===================================================== */
+
+function getSubjectsInRange(
+  range
+){
+
+  const totals={
+    math:0,
+    english:0,
+    japanese:0,
+    science:0,
+    social:0,
+    subjectOther:0
+  };
+
+
+  const current =
+    new Date(
+      range.start
+    );
+
+
+  while(
+    current<=range.end
+  ){
+
+    const key =
+      formatDate(current);
+
+
+    if(
+      records[key] &&
+      records[key].subjects
+    ){
+
+      Object.keys(totals)
+        .forEach(
+          key2=>{
+
+            totals[key2]+=
+              Number(
+                records[key]
+                  .subjects[key2]||0
+              );
+
+          }
+        );
+
+    }
+
+
+    current.setDate(
+      current.getDate()+1
+    );
+
+  }
+
+
+  return totals;
+
+}
+
+
+function createMonthSubjectChart(
+  range
+){
+
+  const container =
+    document.getElementById(
+      "monthSubjectChart"
+    );
+
+
+  const totals =
+    getSubjectsInRange(
+      range
+    );
+
+
+  container.innerHTML="";
+
+
+  const max =
+    Math.max(
+      1,
+      ...Object.values(totals)
+    );
+
+
+  Object.keys(
+    SUBJECTS
+  ).forEach(
+    key=>{
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "subject-chart-row";
+
+
+      const width =
+        totals[key]===0
+          ? 0
+          : Math.max(
+              5,
+              totals[key]/max*100
+            );
+
+
+      row.innerHTML = `
+
+        <div class="subject-name">
+          ${SUBJECTS[key]}
+        </div>
+
+        <div class="subject-bar-bg">
+          <div
+            class="subject-bar"
+            style="width:${width}%"
+          ></div>
+        </div>
+
+        <div class="subject-time">
+          ${formatMinutes(
+            totals[key]
+          )}
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+const achievements = [
+
+  {
+    icon:"🌱",
+    title:"はじめの一歩",
+    description:"初めて勉強時間を記録",
+    check:()=>getTotalStudy()>0
+  },
+
+  {
+    icon:"📚",
+    title:"10時間達成",
+    description:"累計10時間勉強",
+    check:()=>getTotalStudy()>=600
+  },
+
+  {
+    icon:"🔥",
+    title:"50時間達成",
+    description:"累計50時間勉強",
+    check:()=>getTotalStudy()>=3000
+  },
+
+  {
+    icon:"💯",
+    title:"100時間達成",
+    description:"累計100時間勉強",
+    check:()=>getTotalStudy()>=6000
+  },
+
+  {
+    icon:"🚀",
+    title:"250時間達成",
+    description:"累計250時間勉強",
+    check:()=>getTotalStudy()>=15000
+  },
+
+  {
+    icon:"🌟",
+    title:"500時間達成",
+    description:"累計500時間勉強",
+    check:()=>getTotalStudy()>=30000
+  },
+
+  {
+    icon:"🏆",
+    title:"1000時間達成",
+    description:"累計1000時間勉強",
+    check:()=>getTotalStudy()>=60000
+  },
+
+  {
+    icon:"🔥",
+    title:"7日連続",
+    description:"7日連続で勉強",
+    check:()=>getLongestStreak()>=7
+  },
+
+  {
+    icon:"💎",
+    title:"30日連続",
+    description:"30日連続で勉強",
+    check:()=>getLongestStreak()>=30
+  }
+
+];
+
+
+const badges = [
+
+  {
+    icon:"🌱",
+    title:"FIRST STEP",
+    description:"最初の一歩",
+    check:()=>getTotalStudy()>0
+  },
+
+  {
+    icon:"🔥",
+    title:"KEEP GOING",
+    description:"7日連続",
+    check:()=>getLongestStreak()>=7
+  },
+
+  {
+    icon:"💯",
+    title:"CENTURY",
+    description:"100時間達成",
+    check:()=>getTotalStudy()>=6000
+  },
+
+  {
+    icon:"📅",
+    title:"PERFECT WEEK",
+    description:"1週間毎日勉強",
+    check:()=>hasPerfectWeek()
+  },
+
+  {
+    icon:"🏆",
+    title:"STUDY MASTER",
+    description:"1000時間達成",
+    check:()=>getTotalStudy()>=60000
+
+  }
+
+];
+
+
+function getLongestStreak(){
+
+  const keys =
+    Object.keys(records)
+      .filter(
+        key =>
+          key>=START_DATE &&
+          Number(
+            records[key]
+              .studyMinutes||0
+          )>0
+      )
+      .sort();
+
+
+  let longest=0;
+  let current=0;
+  let previous=null;
+
+
+  keys.forEach(
+    key=>{
+
+      if(!previous){
+
+        current=1;
+
+      }
+
+      else{
+
+        const d1 =
+          new Date(
+            previous+
+            "T00:00:00"
+          );
+
+
+        const d2 =
+          new Date(
+            key+
+            "T00:00:00"
+          );
+
+
+        const diff =
+          (
+            d2-d1
+          ) /
+          86400000;
+
+
+        current =
+          diff===1
+            ? current+1
+            : 1;
+
+      }
+
+
+      longest =
+        Math.max(
+          longest,
+          current
+        );
+
+
+      previous=key;
+
+    }
+  );
+
+
+  return longest;
+
+}
+
+
+/* =====================================================
+   PERFECT WEEK
+===================================================== */
+
+function hasPerfectWeek(){
+
+  const start =
+    new Date(
+      START_DATE+
+      "T00:00:00"
+    );
+
+
+  const today =
+    new Date();
+
+
+  let monday =
+    getWeekRangeFromDate(
+      START_DATE
+    ).start;
+
+
+  while(
+    monday<=today
+  ){
+
+    let perfect=true;
+
+
+    for(
+      let i=0;
+      i<7;
+      i++
+    ){
+
+      const d =
+        new Date(
+          monday
+        );
+
+
+      d.setDate(
+        monday.getDate()+i
+      );
+
+
+      const key =
+        formatDate(d);
+
+
+      if(
+        d>=start &&
+        d<=today
+      ){
+
+        if(
+          !records[key] ||
+          Number(
+            records[key]
+              .studyMinutes||0
+          )<=0
+        ){
+
+          perfect=false;
+
+          break;
+
+        }
+
+      }
+
+    }
+
+
+    if(perfect){
+
+      return true;
+
+    }
+
+
+    monday.setDate(
+      monday.getDate()+7
+    );
+
+  }
+
+
+  return false;
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENT DISPLAY
+===================================================== */
+
+function updateAchievements(){
+
+  const list =
+    document.getElementById(
+      "achievementList"
+    );
+
+
+  list.innerHTML="";
+
+
+  achievements.forEach(
+    achievement=>{
+
+      const unlocked =
+        achievement.check();
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "achievement"+
+        (
+          unlocked
+            ? " unlocked"
+            : ""
+        );
+
+
+      div.innerHTML = `
+
+        <span class="lock">
+          ${
+            unlocked
+              ? "✓"
+              : "🔒"
+          }
+        </span>
+
+        <div
+          class="achievement-icon"
+        >
+          ${achievement.icon}
+        </div>
+
+        <div
+          class="achievement-title"
+        >
+          ${achievement.title}
+        </div>
+
+        <div
+          class="achievement-description"
+        >
+          ${achievement.description}
+        </div>
+
+      `;
+
+
+      list.appendChild(
+        div
+      );
+
+    }
+  );
+
+
+  const badgeList =
+    document.getElementById(
+      "badgeList"
+    );
+
+
+  badgeList.innerHTML="";
+
+
+  badges.forEach(
+    badge=>{
+
+      const unlocked =
+        badge.check();
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "achievement"+
+        (
+          unlocked
+            ? " unlocked"
+            : ""
+        );
+
+
+      div.innerHTML = `
+
+        <span class="lock">
+          ${
+            unlocked
+              ? "✓"
+              : "🔒"
+          }
+        </span>
+
+        <div
+          class="achievement-icon"
+        >
+          ${badge.icon}
+        </div>
+
+        <div
+          class="achievement-title"
+        >
+          ${badge.title}
+        </div>
+
+        <div
+          class="achievement-description"
+        >
+          ${badge.description}
+        </div>
+
+      `;
+
+
+      badgeList.appendChild(
+        div
+      );
+
+    }
+  );
+
+
+  createTotalSubjectChart();
+
+}
+
+
+/* =====================================================
+   TOTAL SUBJECT CHART
+===================================================== */
+
+function createTotalSubjectChart(){
+
+  const container =
+    document.getElementById(
+      "totalSubjectChart"
+    );
+
+
+  const totals =
+    getTotalSubjects();
+
+
+  container.innerHTML="";
+
+
+  const max =
+    Math.max(
+      1,
+      ...Object.values(totals)
+    );
+
+
+  Object.keys(
+    SUBJECTS
+  ).forEach(
+    key=>{
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "subject-chart-row";
+
+
+      const width =
+        totals[key]===0
+          ? 0
+          : Math.max(
+              5,
+              totals[key]/max*100
+            );
+
+
+      row.innerHTML = `
+
+        <div class="subject-name">
+          ${SUBJECTS[key]}
+        </div>
+
+        <div class="subject-bar-bg">
+          <div
+            class="subject-bar"
+            style="width:${width}%"
+          ></div>
+        </div>
+
+        <div class="subject-time">
+          ${formatMinutes(
+            totals[key]
+          )}
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   DATA EXPORT
+===================================================== */
+
+function exportData(){
+
+  const backup={
+
+    app:"STUDY⁺",
+
+    version:2,
+
+    startDate:
+      START_DATE,
+
+    exportedAt:
+      new Date()
+        .toISOString(),
+
+    records,
+
+    goalMinutes,
+
+    monthlyGoalMinutes,
+
+    examDate
+
+  };
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document.createElement(
+      "a"
+    );
+
+
+  a.href=url;
+
+
+  a.download =
+    `STUDY_plus_backup_${getToday()}.json`;
+
+
+  a.click();
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  document.getElementById(
+    "backupMessage"
+  ).textContent =
+    "💾 バックアップを保存しました！";
+
+}
+
+
+/* =====================================================
+   IMPORT
+===================================================== */
+
+function importData(event){
+
+  const file =
+    event.target.files[0];
+
+
+  if(!file)return;
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(e){
+
+      try{
+
+        const backup =
+          JSON.parse(
+            e.target.result
+          );
+
+
+        if(
+          backup.app!=="STUDY⁺"
+        ){
+
+          alert(
+            "STUDY⁺のバックアップではありません。"
+          );
+
+          return;
+
+        }
+
+
+        if(
+          !confirm(
+            "バックアップデータを復元しますか？"
+          )
+        ){
+
+          return;
+
+        }
+
+
+        records={
+          ...records,
+          ...(backup.records||{})
+        };
+
+
+        if(
+          typeof
+          backup.goalMinutes
+          ==="number"
+        ){
+
+          goalMinutes =
+            backup.goalMinutes;
+
+          localStorage.setItem(
+            "studyGoalMinutes",
+            goalMinutes
+          );
+
+        }
+
+
+        if(
+          typeof
+          backup.examDate
+          ==="string"
+        ){
+
+          examDate =
+            backup.examDate;
+
+          localStorage.setItem(
+            "studyExamDate",
+            examDate
+          );
+
+        }
+
+
+        localStorage.setItem(
+          "studyRecords",
+          JSON.stringify(records)
+        );
+
+
+        updateHome();
+
+        alert(
+          "📥 復元しました！"
+        );
+
+      }
+
+      catch(error){
+
+        alert(
+          "ファイルを読み込めませんでした。"
+        );
+
+      }
+
+
+      event.target.value="";
+
+    };
+
+
+  reader.readAsText(file);
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+function deleteAllData(){
+
+  if(
+    !confirm(
+      "⚠️ 本当にすべての記録を削除しますか？"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "バックアップを取ってから削除することをおすすめします。\n\n本当に削除しますか？"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  records={};
+
+  goalMinutes=0;
+
+  examDate="";
+
+
+  localStorage.removeItem(
+    "studyRecords"
+  );
+
+  localStorage.removeItem(
+    "studyGoalMinutes"
+  );
+
+  localStorage.removeItem(
+    "studyExamDate"
+  );
+
+
+  updateHome();
+
+  updateAchievements();
+
+  updateDataStatus();
+
+
+  document.getElementById(
+    "backupMessage"
+  ).textContent =
+    "🗑️ すべて削除しました。";
+
+}
+
+
+/* =====================================================
+   DATA STATUS
+===================================================== */
+
+function updateDataStatus(){
+
+  const keys =
+    Object.keys(records)
+      .filter(
+        key=>key>=START_DATE
+      );
+
+
+  const total =
+    getTotalStudy();
+
+
+  document.getElementById(
+    "dataStatus"
+  ).innerHTML = `
+
+    🌱 記録開始：
+    <strong>
+      2026年7月1日
+    </strong>
+
+    <br>
+
+    📝 記録日数：
+    <strong>
+      ${keys.length}日
+    </strong>
+
+    <br>
+
+    📚 累計勉強：
+    <strong>
+      ${formatMinutes(total)}
+    </strong>
+
+  `;
+
+}
+
+
+/* =====================================================
+   SUBJECT LIVE UPDATE
+===================================================== */
+
+Object.keys(
+  SUBJECTS
+).forEach(
+  key=>{
+
+    document.addEventListener(
+      "input",
+      function(event){
+
+        if(
+          event.target.id===key
+        ){
+
+          updateSubjectTotal();
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const dateInput =
+  document.getElementById(
+    "date"
+  );
+
+
+dateInput.min =
+  START_DATE;
+
+
+dateInput.value =
+  getToday();
+
+
+document.getElementById(
+  "examDate"
+).value =
+  examDate;
+
+
+loadDay();
+
+updateHome();
+
+updateAchievements();
+
+</script>
+
+
+</body>
+
+</html>
